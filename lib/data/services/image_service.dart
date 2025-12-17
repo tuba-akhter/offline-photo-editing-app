@@ -46,6 +46,21 @@ class ImageService {
     return convertedBytes;
   }
 
+  /// Converts [img.Image] to a Uint8List for TFLite input (0-255).
+  static Uint8List imageToUint8List(img.Image image) {
+    final Uint8List convertedBytes = Uint8List(1 * image.height * image.width * 3);
+    int bufferIndex = 0;
+
+    for (var y = 0; y < image.height; y++) {
+        for (var x = 0; x < image.width; x++) {
+            final pixel = image.getPixel(x, y);
+            convertedBytes[bufferIndex++] = pixel.r.toInt();
+            convertedBytes[bufferIndex++] = pixel.g.toInt();
+            convertedBytes[bufferIndex++] = pixel.b.toInt();
+        }
+    }
+    return convertedBytes;
+  }
   /// Converts output tensor buffer back to [img.Image].
   static img.Image float32ListToImage(Float32List buffer, int width, int height) {
      final image = img.Image(width: width, height: height);

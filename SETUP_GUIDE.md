@@ -9,6 +9,26 @@ flutter create . --org com.antigravity.enhancer
 ```
 *This will generate the `android`, `ios`, `inputs`, `windows`, etc. directories while keeping the `lib` and `pubspec.yaml` I created.*
 
+### Prerequisite: Windows Developer Mode
+> [!IMPORTANT]
+> **Windows Users**: You must enable **Developer Mode** to allow Flutter to create usage of symlinks for plugins.
+> 1. Open System Settings (`Start` -> Search "Developer Settings").
+> 2. Toggle **Developer Mode** to **On**.
+> 3. Click "Yes" to confirm.
+> *If you do not do this, `flutter create` or `flutter run` may fail with a symlink error.*
+
+### Prerequisite: Android Studio
+**You must have the Android SDK installed to build for Android.**
+1. Download and install [Android Studio](https://developer.android.com/studio).
+2. Open **SDK Manager** (Settings > Languages & Frameworks > Android SDK).
+3. Select the **SDK Tools** tab.
+4. **CHECK** the box for **Android SDK Command-line Tools (latest)**.
+5. Click **Apply** to install.
+6. Run `flutter doctor --android-licenses` in a terminal and type `y` to accept all licenses.
+
+> [!TIP]
+> If `flutter run` fails with "Gradle task assembleDebug failed", run `flutter doctor -v` and ensure no issues are listed under Android toolchain.
+
 ## 2. Install Dependencies
 ```bash
 flutter pub get
